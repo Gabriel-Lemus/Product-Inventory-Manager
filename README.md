@@ -140,3 +140,7 @@ scope or schedule:
 
 The project will be considered to have met all the neccesary criteria when all
 of the [**_Key Characteristics_**](#key-characteristics) are fully implemented.
+
+## Website Link
+
+The project is available in the following link: <https://product-inventory-manager.web.app/>.
