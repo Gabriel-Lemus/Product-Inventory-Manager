@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "product-inventory-manager",
     "public": "public",
     "cleanUrls": true,
     "ignore": [
