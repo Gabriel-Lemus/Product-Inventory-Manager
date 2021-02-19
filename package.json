@@ -1,0 +1,23 @@
+{
+  "name": "product-inventory-manager",
+  "version": "1.0.0",
+  "description": "Set of npm packages used with the Product Inventory Manager webapp.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gabriel-Lemus/Product-Inventory-Manager.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gabriel-Lemus/Product-Inventory-Manager/issues"
+  },
+  "homepage": "https://github.com/Gabriel-Lemus/Product-Inventory-Manager#readme",
+  "dependencies": {
+    "firebase": "^8.2.7",
+    "firebaseui": "^4.7.3"
+  }
+}

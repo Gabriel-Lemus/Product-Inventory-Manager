@@ -1,89 +1,132 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
-
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/8.2.7/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/8.2.7/firebase-auth.js"></script>
-    <script defer src="/__/firebase/8.2.7/firebase-database.js"></script>
-    <script defer src="/__/firebase/8.2.7/firebase-firestore.js"></script>
-    <script defer src="/__/firebase/8.2.7/firebase-functions.js"></script>
-    <script defer src="/__/firebase/8.2.7/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/8.2.7/firebase-storage.js"></script>
-    <script defer src="/__/firebase/8.2.7/firebase-analytics.js"></script>
-    <script defer src="/__/firebase/8.2.7/firebase-remote-config.js"></script>
-    <script defer src="/__/firebase/8.2.7/firebase-performance.js"></script>
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
-
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/jpg" href="./img/favicon.ico" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Product Inventory Manager</title>
   </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+  <body class="grey lighten-3">
+    <nav class="z-depth-0 grey lighten-4">
+      <div class="nav-wrapper container">
+        <a href="javascript:void(0)" class="brand-logo">
+          <img id="page-logo" src="./img/pim_logo.png" />
+        </a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li id="account-details-li" class="logged-in">
+            <a class="grey-text modal-trigger" data-target="modal-account"
+              >Account</a
+            >
+          </li>
+          <li id="create-new-item-li" class="logged-in">
+            <a
+              class="grey-text modal-trigger"
+              data-target="modal-create-new-item"
+              >Add Item</a
+            >
+          </li>
+          <li id="logout-li" class="logged-in">
+            <a class="grey-text" id="logout">Logout</a>
+          </li>
+          <li id="login-li" class="logged-out">
+            <a class="grey-text modal-trigger" data-target="modal-login"
+              >Login</a
+            >
+          </li>
+          <li id="sign-up-li" class="logged-out">
+            <a class="grey-text modal-trigger" data-target="modal-signup"
+              >Sign up</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div id="modal-signup" class="modal">
+      <div class="modal-content">
+        <h4>Sign up</h4>
+        <br />
+        <form id="signup-form">
+          <div class="input-field">
+            <input type="email" id="signup-email" required />
+            <label for="signup-email">Email address</label>
+          </div>
+          <div class="input-field">
+            <input type="password" id="signup-password" required />
+            <label for="signup-password">Type in your password</label>
+          </div>
+          <!-- <div class="input-field">
+            <input type="password-verification" id="signup-password-verification" required />
+            <label for="signup-password">Repeat password</label>
+          </div> -->
+          <button class="btn yellow darken-2 z-depth-0">Sign up</button>
+        </form>
+      </div>
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+    <div id="modal-login" class="modal">
+      <div class="modal-content">
+        <h4>Login</h4>
+        <br />
+        <form id="login-form">
+          <div class="input-field">
+            <input type="email" id="login-email" required />
+            <label for="login-email">Email address</label>
+          </div>
+          <div class="input-field">
+            <input type="password" id="login-password" required />
+            <label for="login-password">Your password</label>
+          </div>
+          <button class="btn yellow darken-2 z-depth-0">Login</button>
+        </form>
+      </div>
+    </div>
 
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
-    </script>
+    <div id="modal-account" class="modal">
+      <div class="modal-content center-align">
+        <h4>Account Details</h4>
+        <br />
+        <div class="account-details"></div>
+      </div>
+    </div>
+
+    <div id="modal-create-new-item" class="modal">
+      <div class="modal-content">
+        <h4>Add Item</h4>
+        <br />
+        <form id="create-form">
+          <div class="input-field">
+            <input type="text" id="title" required />
+            <label for="title">Item Name</label>
+          </div>
+          <div class="input-field">
+            <textarea
+              id="content"
+              class="materialize-textarea"
+              required
+            ></textarea>
+            <label for="content">Quantity</label>
+          </div>
+          <button class="btn yellow darken-2 z-depth-0">Create</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="items-container" class="container" style="margin-top: 40px">
+      <ul class="collapsible z-depth-0 items" style="border: none"></ul>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="scripts/auth/auth.js"></script>
+    <script src="scripts/auth/index.js"></script>
   </body>
 </html>
