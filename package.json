@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Gabriel-Lemus/Product-Inventory-Manager#readme",
   "dependencies": {
-    "firebase": "^8.2.7"
+    "firebase": "^8.2.7",
+    "firebaseui": "^4.7.3"
   }
 }
