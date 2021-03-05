@@ -50,28 +50,40 @@ newItemForm.addEventListener('submit', (e) => {
   let loader = document.getElementById('add-new-item-loader');
   loader.style.display = 'block';
 
-  // Attempt to add new item to inventory or catch the error.
-  db.collection('users')
-    .doc(_user.uid)
-    .get()
-    .then((doc) => {
-      db.collection(doc.data().Company_Name + '-items')
-        .doc(newItemForm['item-name'].value)
-        .set({
-          itemName: newItemForm['item-name'].value,
-          quantity: parseInt(newItemForm['item-quantity'].value),
-        })
-        .then(() => {
-          // Reset form and close the modal.
-          const modal = document.querySelector('#modal-create-new-item');
-          M.Modal.getInstance(modal).close();
-          newItemForm.reset();
-          loader.style.display = 'none';
-        })
-        .catch((error) => {
-          console.log(error.message);
-        });
+  // Prevent unlogged users from accessing the DB.
+  if (_user === null) {
+    M.toast({
+      html:
+        'Please sign in before attempting to access your companys database.',
     });
+    setTimeout(() => {
+      location.reload();
+      loader.style.display = 'none';
+    }, 2500);
+  } else {
+    // Attempt to add new item to inventory or catch the error.
+    db.collection('users')
+      .doc(_user.uid)
+      .get()
+      .then((doc) => {
+        db.collection(doc.data().Company_Name + '-items')
+          .doc(newItemForm['item-name'].value)
+          .set({
+            itemName: newItemForm['item-name'].value,
+            quantity: parseInt(newItemForm['item-quantity'].value),
+          })
+          .then(() => {
+            // Reset form and close the modal.
+            const modal = document.querySelector('#modal-create-new-item');
+            M.Modal.getInstance(modal).close();
+            newItemForm.reset();
+            loader.style.display = 'none';
+          })
+          .catch((error) => {
+            console.log(error.message);
+          });
+      });
+  }
 });
 
 // Sign Up
