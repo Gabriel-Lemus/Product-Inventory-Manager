@@ -77,7 +77,7 @@ This web application is aimed to tackle these problems.
   - This will allow to eliminate material waste by cycling through the user's
     inventory in a periodic basis.
 
-  - It will also enable the user to know thir stock level in real
+  - It will also enable the user to know their stock level in real
     time.
 
   - Better control of item costs.
@@ -100,7 +100,7 @@ This web application is aimed to tackle these problems.
   - The reports will include stock levels, profitability, and sales performance
     (the latter two will only be available to groceries or restaurants).
 
-    - **Stock reports** let the user stay updated on what items they curently
+    - **Stock reports** let the user stay updated on what items they currently
       have available.
 
     - **Profitability reports** can help the user visualize their income flow by

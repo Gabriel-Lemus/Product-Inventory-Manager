@@ -6,3 +6,79 @@
 .item-container {
   margin-top: 40px;
 }
+
+#modal-signup {
+  max-height: 75% !important;
+}
+
+#sign-up-loader {
+  display: none;
+  position: absolute;
+  top: 60vh;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+#login-loader {
+  display: none;
+  position: absolute;
+  top: 27vh;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+#logout-loader {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+#add-new-item-loader {
+  display: none;
+  position: absolute;
+  top: 27vh;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.flow-text {
+  font-size: 16px;
+  text-align: justify;
+}
+
+#inv-mngmnt-png {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#img-quote {
+  font-style: italic;
+}
+
+.key-char-div {
+  margin-left: 25px;
+}
+
+.list:not(.browser-default) > li,
+.list:not(.browser-default) {
+  list-style-type: disc;
+}
+
+.inner-li-txt {
+  font-style: normal;
+}
+
+#items-container {
+  list-style-type: none;
+}
