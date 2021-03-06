@@ -13,9 +13,9 @@ const setupUI = (user) => {
       .get()
       .then((doc) => {
         const accountDetHtml = `
-        <h6>Hello, ${doc.data().Name}!</h6>
-        <h6>Logged in as ${user.email}</h6>
-        <h6>Company: ${doc.data().Company_Name}</h6>`;
+          <h6>Hello, ${doc.data().Name}!</h6>
+          <h6>Logged in as ${user.email}</h6>
+          <h6>Company: ${doc.data().Company_Name}</h6>`;
 
         accountDetails.innerHTML = accountDetHtml;
       });
@@ -27,6 +27,7 @@ const setupUI = (user) => {
     // Hide account info.
     accountDetails.innerHTML = '';
 
+    // Toggle UI elements.
     loggedInLinks.forEach((link) => (link.style.display = 'none'));
     loggedOutLinks.forEach((link) => (link.style.display = 'block'));
   }
@@ -43,7 +44,8 @@ function setupItems(data) {
         <div class="collapsible-header grey lighten-4"> ${item.itemName} </div>
         <div class="collapsible-body white"> Amount: ${item.quantity} </div>
       </li>
-    `;
+      `;
+
       html += li;
     });
     itemList.innerHTML = html;
@@ -67,7 +69,7 @@ function showPageInfo() {
     <h5>Key characteristics</h5>
     <div class="key-char-div">
       <ul class="list">
-        <li><em><b><p class="flow-text">Inventory items upload and update</p></b><em></li>
+        <li><em><b><p class="flow-text">Inventory items upload and update</p></b></em></li>
         <div class="key-char-div">
           <ul class="list nested-list">
             <li class="inner-li-txt"><p class="flow-text">The user will be able to upload items and update their quantities by entering data like the product name, quantity, vendor, and Universal Product Code (UPC).</p></li>
@@ -77,13 +79,13 @@ function showPageInfo() {
             <li class="inner-li-txt"><p class="flow-text">This will help users minimize human error as well.</p></li>
           </ul>
         </div>
-        <li><em><b><p class="flow-text">Low-stock inventory alerts</p></b><em></li>
+        <li><em><b><p class="flow-text">Low-stock inventory alerts</p></b></em></li>
         <div class="key-char-div">
           <ul class="list nested-list">
             <li class="inner-li-txt"><p class="flow-text">The webapp will notify the user whenever a product is about to spoil or run out.</p></li>
           </ul>
         </div>
-        <li><em><b><p class="flow-text">Reports</p></b><em></li>
+        <li><em><b><p class="flow-text">Reports</p></b></em></li>
         <div class="key-char-div">
           <ul class="list nested-list">
             <li class="inner-li-txt"><p class="flow-text">Analytics and reports will provide the user with a thorough picture of their finances, performance, and periodic activities.</p></li>

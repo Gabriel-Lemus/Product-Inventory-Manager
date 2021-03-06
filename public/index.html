@@ -5,15 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" type="image/jpg" href="./img/favicon.ico" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
     <link rel="stylesheet" href="./css/style.css" />
     <title>Product Inventory Manager</title>
   </head>
   <body class="grey lighten-3">
-
     <!-- NavBar -->
     <nav class="z-depth-0 grey lighten-4">
       <div class="nav-wrapper container">
@@ -22,29 +18,19 @@
         </a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li id="account-details-li" class="logged-in" style="display: none">
-            <a class="grey-text modal-trigger" data-target="modal-account"
-              >Account</a
-            >
+            <a class="grey-text modal-trigger" data-target="modal-account">Account</a>
           </li>
           <li id="create-new-item-li" class="logged-in" style="display: none">
-            <a
-              class="grey-text modal-trigger"
-              data-target="modal-create-new-item"
-              >Add Item</a
-            >
+            <a class="grey-text modal-trigger" data-target="modal-create-new-item">Add Item</a>
           </li>
           <li id="logout-li" class="logged-in" style="display: none">
             <a class="grey-text" id="logout">Logout</a>
           </li>
           <li id="login-li" class="logged-out" style="display: none">
-            <a class="grey-text modal-trigger" data-target="modal-login"
-              >Login</a
-            >
+            <a class="grey-text modal-trigger" data-target="modal-login">Login</a>
           </li>
           <li id="sign-up-li" class="logged-out" style="display: none">
-            <a class="grey-text modal-trigger" data-target="modal-signup"
-              >Sign up</a
-            >
+            <a class="grey-text modal-trigger" data-target="modal-signup">Sign up</a>
           </li>
         </ul>
       </div>
@@ -59,52 +45,27 @@
           <div class="input-field">
             <input type="text" id="user-name" class="validate" required />
             <label for="user-name">Name</label>
-            <span
-              class="helper-text"
-              data-error="Please enter your name."
-            ></span>
+            <span class="helper-text" data-error="Please enter your name."></span>
           </div>
           <div class="input-field">
             <input type="text" id="company-name" class="validate" required />
             <label for="company-name">Company name</label>
-            <span
-              class="helper-text"
-              data-error="Please enter your company's name."
-            ></span>
+            <span class="helper-text" data-error="Please enter your company's name."></span>
           </div>
           <div class="input-field">
             <input type="email" id="signup-email" class="validate" required />
             <label for="signup-email">Email address</label>
-            <span
-              class="helper-text"
-              data-error="Please enter a valid email."
-            ></span>
+            <span class="helper-text" data-error="Please enter a valid email."></span>
           </div>
           <div class="input-field">
-            <input
-              type="password"
-              id="signup-password"
-              class="validate"
-              required
-            />
+            <input type="password" id="signup-password" class="validate" required />
             <label for="signup-password">Type in your password</label>
-            <span
-              class="helper-text"
-              data-error="Please enter a password."
-            ></span>
+            <span class="helper-text" data-error="Please enter a password."></span>
           </div>
           <div class="input-field">
-            <input
-              type="password"
-              id="signup-password-confirmation"
-              class="validate"
-              required
-            />
+            <input type="password" id="signup-password-confirmation" class="validate" required />
             <label for="signup-password-confirmation">Confirm your password</label>
-            <span
-              class="helper-text"
-              data-error="Please re-enter your password."
-            ></span>
+            <span class="helper-text" data-error="Please re-enter your password."></span>
           </div>
           <button class="btn yellow darken-2 z-depth-0">Sign up</button>
         </form>
@@ -133,18 +94,12 @@
           <div class="input-field">
             <input type="email" id="login-email" class="validate" required />
             <label for="login-email">Email address</label>
-            <span
-              class="helper-text"
-              data-error="Please enter your email address."
-            ></span>
+            <span class="helper-text" data-error="Please enter your email address."></span>
           </div>
           <div class="input-field">
             <input type="password" id="login-password" class="validate" required />
             <label for="login-password">Your password</label>
-            <span
-              class="helper-text"
-              data-error="Please enter your password."
-            ></span>
+            <span class="helper-text" data-error="Please enter your password."></span>
           </div>
           <button class="btn yellow darken-2 z-depth-0">Login</button>
         </form>
@@ -184,11 +139,7 @@
             <label for="item-name">Item Name</label>
           </div>
           <div class="input-field">
-            <input
-              id="item-quantity"
-              type="number"
-              required
-            ></input>
+            <input id="item-quantity" type="number" required />
             <label for="item-quantity">Quantity</label>
           </div>
           <button class="btn yellow darken-2 z-depth-0">Add New Item</button>
@@ -214,6 +165,7 @@
       <ul class="collapsible z-depth-0 items" style="border: none"></ul>
     </div>
 
+    <!-- Logout loader -->
     <div id="logout-loader" class="preloader-wrapper big active">
       <div class="spinner-layer spinner-blue-only">
         <div class="circle-clipper left">
