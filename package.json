@@ -19,5 +19,57 @@
   "dependencies": {
     "firebase": "^8.2.7",
     "firebaseui": "^4.7.3"
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "bracketSpacing": true,
+    "endOfLine": "crlf",
+    "htmlWhitespaceSensitivity": "css",
+    "insertPragma": false,
+    "jsxBracketSameLine": false,
+    "jsxSingleQuote": false,
+    "printWidth": 80,
+    "proseWrap": "preserve",
+    "quoteProps": "as-needed",
+    "requirePragma": false,
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "useTabs": false,
+    "vueIndentScriptAndStyle": false,
+    "overrides": [
+      {
+        "files": ["*.html"],
+        "options": {
+          "printWidth": 120,
+          "parser": "html"
+        }
+      },
+      {
+        "files": ["*.css"],
+        "options": {
+          "parser": "css"
+        }
+      },
+      {
+        "files": ["*.js"],
+        "options": {
+          "parser": "babel"
+        }
+      },
+      {
+        "files": ["*.ts"],
+        "options": {
+          "parser": "typescript"
+        }
+      },
+      {
+        "files": ["*.json", "*.jsonc"],
+        "options": {
+          "parser": "json"
+        }
+      }
+    ]
   }
 }
