@@ -4,7 +4,9 @@
   "description": "Set of npm packages used with the Product Inventory Manager webapp.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "serve ./public/ -p 8080",
+    "deployWebsite": "firebase deploy --only hosting",
+    "deploy": "firebase deploy"
   },
   "repository": {
     "type": "git",
@@ -42,7 +44,7 @@
       {
         "files": ["*.html"],
         "options": {
-          "printWidth": 125,
+          "printWidth": 150,
           "parser": "html"
         }
       },
