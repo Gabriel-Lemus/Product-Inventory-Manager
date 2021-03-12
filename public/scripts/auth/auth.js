@@ -107,7 +107,7 @@ adminForm.addEventListener('submit', (e) => {
   loader.style.display = 'block';
   const adminEmail = document.querySelector('#new-admin-email').value;
   setAdminRole({ email: adminEmail, bool: true }).then((result) => {
-    M.toast({ html: result });
+    M.toast({ html: result.data.message });
     const modal = document.querySelector('#modal-make-user-admin');
     M.Modal.getInstance(modal).close();
     signUpForm.reset();
@@ -157,75 +157,102 @@ signUpForm.addEventListener('submit', (e) => {
 
   // Leave a time for backend to examine the user credentials.
   setTimeout(() => {
-    // Check if passwords match.
-    if (password === passwordConfirmation) {
-      // Sign up user.
-      auth
-        .createUserWithEmailAndPassword(email, password)
-        .then((credential) => {
-          // Send email verification
-          verifyEmail(email);
-
-          return db.collection('Users').doc(credential.user.uid).set({
-            Name: signUpForm['user-name'].value,
-            Company_Name: signUpForm['company-name'].value,
-            Email: email,
-            is_Company_Admin: true,
+    // Check if a company with the same name doesn't exist already.
+    db.collection('Companies_Data')
+      .doc('Companies')
+      .collection(signUpForm['company-name'].value)
+      .get()
+      .then((subcollection) => {
+        if (subcollection.docs.length > 0) {
+          // An existent company has the same name.
+          M.toast({
+            html:
+              "We're sorry. An existent company has the same name as the one you requested. Please pick another name for your company.",
           });
-        })
-        .then(() => {
-          setAdminRole({ email: email, bool: true, isNewlyCreatedUser: true })
-            .then((adminResult) => {
-              setCompanyInfo({
-                email: email,
-                company: signUpForm['company-name'].value,
-              })
-                .then((companyInfoResult) => {
-                  // console.log(adminResult);
-                  // console.log(companyInfoResult);
-                  db.collection('Companies_Data')
-                    .doc('Companies')
-                    .collection(signUpForm['company-name'].value)
-                    .doc('Company_Details')
-                    .set({
-                      Name: signUpForm['company-name'].value,
-                      Members: [signUpForm['user-name'].value],
-                      Number_of_Members: 1,
-                    })
-                    .then(() => {
-                      auth.signOut().then(() => {
-                        auth
-                          .signInWithEmailAndPassword(email, password)
-                          .then(() => {
-                            const modal = document.querySelector(
-                              '#modal-signup'
-                            );
-                            M.Modal.getInstance(modal).close();
-                            signUpForm.reset();
-                            loader.style.display = 'none';
-                            location.reload();
-                          });
-                      });
-                    });
-                })
-                .catch((error) => {
-                  console.log(error);
+          setTimeout(() => {
+            let companyNameInput = document.getElementById('company-name');
+            companyNameInput.value = '';
+            companyNameInput.classList.remove('active');
+            companyNameInput.classList.remove('valid');
+            loader.style.display = 'none';
+          }, 2250);
+        } else {
+          // Check if passwords match.
+          if (password === passwordConfirmation) {
+            // Sign up user.
+            auth
+              .createUserWithEmailAndPassword(email, password)
+              .then((credential) => {
+                // Send email verification
+                verifyEmail(email);
+
+                return db.collection('Users').doc(credential.user.uid).set({
+                  Name: signUpForm['user-name'].value,
+                  Company_Name: signUpForm['company-name'].value,
+                  Email: email,
                 });
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        });
-    } else {
-      // Passwords do not match.
-      M.toast({ html: 'Passwords do not match.' });
-      let signUp = document.getElementById('signup-password-confirmation');
-      signUp.value = '';
-      signUp.classList.remove('active');
-      signUp.classList.remove('valid');
-      loader.style.display = 'none';
-    }
-  }, 1750);
+              })
+              .then(() => {
+                setAdminRole({
+                  email: email,
+                  bool: true,
+                  isNewlyCreatedUser: true,
+                })
+                  .then((adminResult) => {
+                    setCompanyInfo({
+                      email: email,
+                      company: signUpForm['company-name'].value,
+                    })
+                      .then((companyInfoResult) => {
+                        // console.log(adminResult);
+                        // console.log(companyInfoResult);
+                        db.collection('Companies_Data')
+                          .doc('Companies')
+                          .collection(signUpForm['company-name'].value)
+                          .doc('Company_Details')
+                          .set({
+                            Name: signUpForm['company-name'].value,
+                            Members: [signUpForm['user-name'].value],
+                            Number_of_Members: 1,
+                          })
+                          .then(() => {
+                            auth.signOut().then(() => {
+                              auth
+                                .signInWithEmailAndPassword(email, password)
+                                .then(() => {
+                                  const modal = document.querySelector(
+                                    '#modal-signup'
+                                  );
+                                  M.Modal.getInstance(modal).close();
+                                  signUpForm.reset();
+                                  loader.style.display = 'none';
+                                  location.reload();
+                                });
+                            });
+                          });
+                      })
+                      .catch((error) => {
+                        console.log(error);
+                      });
+                  })
+                  .catch((error) => {
+                    console.log(error);
+                  });
+              });
+          } else {
+            // Passwords do not match.
+            M.toast({ html: 'Passwords do not match.' });
+            let signUp = document.getElementById(
+              'signup-password-confirmation'
+            );
+            signUp.value = '';
+            signUp.classList.remove('active');
+            signUp.classList.remove('valid');
+            loader.style.display = 'none';
+          }
+        }
+      }, 1750);
+  });
 });
 
 // Logout
