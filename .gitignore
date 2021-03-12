@@ -67,3 +67,6 @@ node_modules/
 
 # VS Code config files
 .vscode
+
+# Firebase email template for password reset
+password-reset-template.html
