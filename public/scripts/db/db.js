@@ -1,11 +1,3 @@
-// Firebase setup
-firebase.initializeApp({
-  projectId: 'product-inventory-manager',
-  appId: '1:729377056436:web:7c321d1ecdd3ba831a59e1',
-  apiKey: 'AIzaSyDi3hy7PunKTxs4vAPpmsaWMPMbnuQUhqE',
-  authDomain: 'product-inventory-manager.firebaseapp.com',
-});
-
 // Auth and Firestore references.
 const auth = firebase.auth();
 const db = firebase.firestore();
