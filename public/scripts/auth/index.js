@@ -3,21 +3,31 @@ const itemList = document.querySelector('.items');
 const loggedOutLinks = document.querySelectorAll('.logged-out');
 const loggedInLinks = document.querySelectorAll('.logged-in');
 const accountDetails = document.querySelector('.account-details');
+const adminItems = document.querySelectorAll('.admin');
 
 // Setup UI based on user logged status.
 const setupUI = (user) => {
   if (user) {
+    if (user.admin) {
+      // Show admin items if the user has admin role.
+      adminItems.forEach((item) => (item.style.display = 'block'));
+    }
+
     // Show account info.
-    db.collection('users')
+    db.collection('Users')
       .doc(user.uid)
       .get()
       .then((doc) => {
         const accountDetHtml = `
           <h6>Hello, ${doc.data().Name}!</h6>
           <h6>Logged in as ${user.email}</h6>
-          <h6>Company: ${doc.data().Company_Name}</h6>`;
+          <h6>Company: ${doc.data().Company_Name}</h6>
+          <h6 class="pink-text">${user.admin ? 'Admin' : ''}</h6>`;
 
         accountDetails.innerHTML = accountDetHtml;
+      })
+      .catch((error) => {
+        console.log(error.message);
       });
 
     // Toggle UI elements.
@@ -30,29 +40,36 @@ const setupUI = (user) => {
     // Toggle UI elements.
     loggedInLinks.forEach((link) => (link.style.display = 'none'));
     loggedOutLinks.forEach((link) => (link.style.display = 'block'));
+    adminItems.forEach((item) => (item.style.display = 'none'));
   }
 };
 
 // Setup Items
-function setupItems(data) {
+function setupItems(data, emailVerified) {
   if (data.length) {
     let html = '';
     data.forEach((doc) => {
       const item = doc.data();
-      const li = `
-      <li>
-        <div class="collapsible-header grey lighten-4"> ${item.itemName} </div>
-        <div class="collapsible-body white"> Amount: ${item.quantity} </div>
-      </li>
-      `;
-
-      html += li;
+      if (item.name !== undefined && item.quantity !== undefined) {
+        let li = `
+        <li>
+          <div class="collapsible-header grey lighten-4"> ${item.name} </div>
+          <div class="collapsible-body white"> Amount: ${item.quantity} </div>
+        </li>
+        `;
+        html += li;
+      }
     });
     itemList.innerHTML = html;
   } else {
     itemList.innerHTML = `
       <p>Your company currently doesn't have any available items.</p>
       <p>Press the 'Add Item' button on the top right corner to add a new item to your company's inventory.</p>`;
+    if (!emailVerified) {
+      itemList.innerHTML += `<br /><h6 class="center cyan-text">You have not veried your email yet. Please do so.</h6>
+      <br /><p class="center">If you would like to receive the email again, please click on the button below.</p>
+      <div><button id="resend-verification-link-btn" class="btn yellow darken-2 z-depth-0" onclick="verifyEmail()">Re-send verification link</button></div>`;
+    }
   }
 }
 
