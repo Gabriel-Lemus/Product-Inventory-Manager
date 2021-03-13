@@ -6,7 +6,8 @@
   "scripts": {
     "start": "serve ./public/ -p 8080",
     "deployWebsite": "firebase deploy --only hosting",
-    "deploy": "firebase deploy"
+    "deploy": "firebase deploy",
+    "build": "exit 0"
   },
   "repository": {
     "type": "git",
