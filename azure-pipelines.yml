@@ -24,5 +24,5 @@ steps:
 - task: CmdLine@2
   inputs:
     script: 'firebase deploy --only hosting --token "$(FIREBASE_TOKEN)" -m "$(Build.BuildNumber)"'
-    workingDirectory: '$(System.DefaultWorkingDirectory)\\public'
+    workingDirectory: '$(System.DefaultWorkingDirectory)'
   displayName: 'firebase deploy -m "$(Build.BuildNumber)"'
