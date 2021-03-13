@@ -66,7 +66,7 @@ function setupItems(data, emailVerified) {
       <p>Your company currently doesn't have any available items.</p>
       <p>Press the 'Add Item' button on the top right corner to add a new item to your company's inventory.</p>`;
     if (!emailVerified) {
-      itemList.innerHTML += `<br /><h6 class="center cyan-text">You have not veried your email yet. Please do so.</h6>
+      itemList.innerHTML += `<br /><h6 class="center cyan-text">You have not verified your email yet. Please do so.</h6>
       <br /><p class="center">If you would like to receive the email again, please click on the button below.</p>
       <div><button id="resend-verification-link-btn" class="btn yellow darken-2 z-depth-0" onclick="verifyEmail()">Re-send verification link</button></div>`;
     }
