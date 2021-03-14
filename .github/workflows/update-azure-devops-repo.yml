@@ -14,9 +14,13 @@ jobs:
       - name: Clone GitHub Repo
         run: git clone --mirror https://github.com/Gabriel-Lemus/Product-Inventory-Manager.git
 
+      # Change directory.
+      - name: Change directory
+        run: cd ./Product-Inventory-Manager.git/
+      
       # Add a remote for the secondary repo in Azure DevOps.
       - name: Add Secondary Remote
-        run: cd ./Product-Inventory-Manager.git/ && git remote add --mirror=fetch secondary https://3011591650101@dev.azure.com/3011591650101/Product%20Inventory%20Manager/_git/Product%20Inventory%20Manager
+        run: git remote add --mirror=fetch secondary https://3011591650101@dev.azure.com/3011591650101/Product%20Inventory%20Manager/_git/Product%20Inventory%20Manager
 
       # Get the commits and refs from the GitHub repo to the local repo.
       - name: Get Commits and References from the GitHub repo
