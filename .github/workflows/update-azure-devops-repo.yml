@@ -20,7 +20,7 @@ jobs:
       
       # Add a remote for the secondary repo in Azure DevOps.
       - name: Add Secondary Remote
-        run: git remote add --mirror=fetch secondary https://3011591650101@dev.azure.com/3011591650101/Product%20Inventory%20Manager/_git/Product%20Inventory%20Manager
+        run: git remote add --mirror=fetch secondary git@ssh.dev.azure.com:v3/3011591650101/Product%20Inventory%20Manager/Product%20Inventory%20Manager
 
       # Get the commits and refs from the GitHub repo to the local repo.
       - name: Get Commits and References from the GitHub repo
