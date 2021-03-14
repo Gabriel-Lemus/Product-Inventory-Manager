@@ -1,8 +1,9 @@
 # Run this workflow every time a commit is pushed to main.
-name: Trigger Azure DevOps pipeline to deploy project to Firebase.
-'on':
+name: Trigger Azure DevOps pipeline to deploy project to Firebase
+on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
   build:
