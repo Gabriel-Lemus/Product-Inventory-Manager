@@ -20,7 +20,7 @@ jobs:
 
       # Initialize auth agent.
       - name: Init auth agent
-        run: ssh-agent /bin/sh
+        run: eval `ssh-agent -s`
 
       # Add RSA key.
       - name: Add RSA key
