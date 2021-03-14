@@ -6,34 +6,22 @@ on:
       - '**'
 
 jobs:
-  # Create a bare repo of the GitHub repo.
-  mirror_github_repo:
-    name: Mirror GitHub Repo
+  sync_with_github_repo:
+    name: Sync with GitHub repo
     runs-on: ubuntu-latest
     steps:
+      # Create a bare repo of the GitHub repo.
       - name: Clone GitHub Repo
         run: git clone --mirror https://github.com/Gabriel-Lemus/Product-Inventory-Manager.git
 
-  # Add a remote for the secondary repo in Azure DevOps.
-  add_secondary:
-    name: Add Secondary
-    runs-on: ubuntu-latest
-    steps:
+      # Add a remote for the secondary repo in Azure DevOps.
       - name: Add Secondary Remote
         run: cd ./Product-Inventory-Manager.git/ && git remote add --mirror=fetch secondary https://3011591650101@dev.azure.com/3011591650101/Product%20Inventory%20Manager/_git/Product%20Inventory%20Manager
 
-  # Get the commits and refs from the GitHub repo to the local repo.
-  fetch_commits_and_refs:
-    name: Fetch Commits and Refs
-    runs-on: ubuntu-latest
-    steps:
+      # Get the commits and refs from the GitHub repo to the local repo.
       - name: Get Commits and References from the GitHub repo
         run: git fetch origin
 
-  # Update Azure DevOps git repo
-  update_azure_devops_repo:
-    name: Update Azure DevOps Repo
-    runs-on: ubuntu-latest
-    steps:
+      # Update Azure DevOps git repo
       - name: Update Azure DevOps repo with local refs
         run: git push secondary --all
