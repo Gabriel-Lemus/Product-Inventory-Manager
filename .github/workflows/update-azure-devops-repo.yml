@@ -10,7 +10,7 @@ jobs:
     name: Sync with GitHub repo
     runs-on: ubuntu-latest
     steps:
-      # Create RSA key file.
+      # Create RSA key file and copy the key into it.
       - name: Create RSA key file
         run: |
           mkdir ~/.ssh
@@ -35,13 +35,13 @@ jobs:
       #     ssh-add - <<< "${{ secrets.SSH_KEY }}"
 
       # Add a remote for the secondary repo in Azure DevOps.
-      # - name: Add Secondary Remote
-      #   run: git remote add --mirror=fetch secondary git@ssh.dev.azure.com:v3/3011591650101/Product%20Inventory%20Manager/Product%20Inventory%20Manager
+      - name: Add Secondary Remote
+        run: git remote add --mirror=fetch secondary git@ssh.dev.azure.com:v3/3011591650101/Product%20Inventory%20Manager/Product%20Inventory%20Manager
 
       # Get the commits and refs from the GitHub repo to the local repo.
-      # - name: Get Commits and References from the GitHub repo
-      #   run: git fetch origin
+      - name: Get Commits and References from the GitHub repo
+        run: git fetch origin
 
       # Update Azure DevOps git repo
-      # - name: Update Azure DevOps repo with local refs
-      #   run: git push secondary --all
+      - name: Update Azure DevOps repo with local refs
+        run: git push secondary --all
