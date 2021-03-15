@@ -7,7 +7,8 @@
     "start": "serve ./public/ -p 8080",
     "deployWebsite": "firebase deploy --only hosting",
     "deploy": "firebase deploy",
-    "build": "exit 0"
+    "build": "exit 0",
+    "syncAzureRepo": "git push azure_devops_repo master"
   },
   "repository": {
     "type": "git",
