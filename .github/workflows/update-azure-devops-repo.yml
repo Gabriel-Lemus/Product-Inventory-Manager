@@ -10,25 +10,29 @@ jobs:
     name: Sync with GitHub repo
     runs-on: ubuntu-latest
     steps:
+      # Create RSA key file.
+      - name: Create RSA key file
+        run: |
+          mkdir ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+    
       # Create a bare repo of the GitHub repo.
       - name: Clone GitHub Repo
         run: git clone --mirror https://github.com/Gabriel-Lemus/Product-Inventory-Manager.git
 
       # Change directory.
       - name: Change directory
-        run: |
-          ls
-      #     cd ./Product-Inventory-Manager.git/
+        run: cd ./Product-Inventory-Manager.git/
 
       # Initialize auth agent.
       - name: Init auth agent
         run: eval `ssh-agent -s`
 
       # Add RSA key.
-      - name: Add RSA key
-        run: |
-          ls
-      #    ssh-add - <<< "${{ secrets.SSH_KEY }}"
+      # - name: Add RSA key
+      #   run: |
+      #     ssh-add - <<< "${{ secrets.SSH_KEY }}"
 
       # Add a remote for the secondary repo in Azure DevOps.
       # - name: Add Secondary Remote
