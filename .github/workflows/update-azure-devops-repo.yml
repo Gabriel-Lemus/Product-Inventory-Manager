@@ -24,7 +24,9 @@ jobs:
 
       # Add RSA key.
       - name: Add RSA key
-        run: ssh-add - <<< "${{ secrets.SSH_KEY }}"
+        run: |
+          ls
+      #    ssh-add - <<< "${{ secrets.SSH_KEY }}"
 
       # Add a remote for the secondary repo in Azure DevOps.
       # - name: Add Secondary Remote
