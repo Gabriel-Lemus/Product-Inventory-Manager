@@ -16,7 +16,9 @@ jobs:
 
       # Change directory.
       - name: Change directory
-        run: cd ./Product-Inventory-Manager.git/
+        run: |
+          ls
+      #     cd ./Product-Inventory-Manager.git/
 
       # Initialize auth agent.
       - name: Init auth agent
